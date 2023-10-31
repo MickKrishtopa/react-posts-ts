@@ -1,0 +1,43 @@
+@import '../../styles/abstract/mixins.scss';
+
+.post {
+    width: 100%;
+    min-height: 100px;
+    padding: 10px 20px;
+    border: 2px solid black;
+    border-radius: 15px;
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+
+        textarea {
+            max-width: 100%;
+            min-height: 80px;
+        }
+    }
+
+    &__title {
+        margin: 0 0 10px;
+        font-size: 25px;
+    }
+
+    &__body {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    &__button-area {
+        display: flex;
+        gap: 25px;
+        // width: 50px;
+
+        img {
+            @include link;
+            width: 25px;
+            height: 25px;
+        }
+    }
+}

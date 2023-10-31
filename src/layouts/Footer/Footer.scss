@@ -1,0 +1,23 @@
+.footer {
+    min-height: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    margin: 50px auto;
+    width: 100%;
+    border: 2px gray solid;
+    border-radius: 1rem;
+}
+
+.footer__link {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    transition: 0.5s;
+}
+
+.footer__link:hover {
+    opacity: 0.7;
+    color: rgb(49, 151, 23);
+}

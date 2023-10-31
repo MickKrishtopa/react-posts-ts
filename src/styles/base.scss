@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    // max-width: 1280px;
+    // margin: 0 auto;
+}
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
+    background-color: #f2f2f2;
+}
+
+footer {
+    flex: 0 0 auto;
+}

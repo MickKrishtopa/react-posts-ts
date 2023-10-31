@@ -1,0 +1,16 @@
+li {
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 10px;
+    div {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+    h3 {
+        margin: 0;
+    }
+    span {
+        margin: 0;
+    }
+}

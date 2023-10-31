@@ -1,0 +1,27 @@
+.header {
+    min-height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    margin-top: 50px;
+    border: 2px gray solid;
+    border-radius: 1rem;
+
+    @media screen and (max-width: 600px) {
+        margin-top: 10px;
+        padding: 10px 20px;
+    }
+}
+
+.header__link {
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+    transition: 0.5s;
+}
+
+.header__link:hover {
+    opacity: 0.7;
+    color: rgb(49, 151, 23);
+}

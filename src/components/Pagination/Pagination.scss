@@ -1,0 +1,13 @@
+.pagination {
+    min-height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+    &__btn-area {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+    }
+}
