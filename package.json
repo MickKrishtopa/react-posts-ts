@@ -1,5 +1,6 @@
 {
     "name": "my-app",
+    "homepage": "https://mickkrishtopa.github.io/react-posts-ts/",
     "version": "0.1.0",
     "private": true,
     "dependencies": {
