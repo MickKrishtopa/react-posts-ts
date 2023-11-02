@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/static/css/main.16e10962.css",
-    "main.js": "/static/js/main.8b32c471.js",
-    "static/media/favorites_active.svg": "/static/media/favorites_active.dccc6fb855578edb1da5e9a68bfd7bdd.svg",
-    "static/media/edit.svg": "/static/media/edit.3b9367d420e8cb07e22db10b6d1b4e62.svg",
-    "static/media/trash.svg": "/static/media/trash.e676cf5e978e3deea0b83661c188540e.svg",
-    "static/media/favorites.svg": "/static/media/favorites.3217363de447e9c6e6fbef8d767561b1.svg",
-    "index.html": "/index.html",
-    "static/media/comment.svg": "/static/media/comment.8046c3a7e8fd9acc0f18398b196b5996.svg",
-    "static/media/confirm.svg": "/static/media/confirm.7c91454c099b076cefd5d13c61dce7a3.svg",
-    "static/media/cancel.svg": "/static/media/cancel.a79bfd3e4f900f9797710d33b8be4bb5.svg",
-    "static/media/commentActive.svg": "/static/media/commentActive.a88be2517e434aebc7a63bcebfd7222a.svg",
-    "static/media/btn-close.svg": "/static/media/btn-close.039f1f5203f653b4bacd.svg",
-    "main.16e10962.css.map": "/static/css/main.16e10962.css.map",
-    "main.8b32c471.js.map": "/static/js/main.8b32c471.js.map"
+    "main.css": "/react-posts-ts/static/css/main.696f413b.css",
+    "main.js": "/react-posts-ts/static/js/main.eef35fe6.js",
+    "static/media/favorites_active.svg": "/react-posts-ts/static/media/favorites_active.dccc6fb855578edb1da5e9a68bfd7bdd.svg",
+    "static/media/edit.svg": "/react-posts-ts/static/media/edit.3b9367d420e8cb07e22db10b6d1b4e62.svg",
+    "static/media/trash.svg": "/react-posts-ts/static/media/trash.e676cf5e978e3deea0b83661c188540e.svg",
+    "static/media/favorites.svg": "/react-posts-ts/static/media/favorites.3217363de447e9c6e6fbef8d767561b1.svg",
+    "index.html": "/react-posts-ts/index.html",
+    "static/media/comment.svg": "/react-posts-ts/static/media/comment.8046c3a7e8fd9acc0f18398b196b5996.svg",
+    "static/media/confirm.svg": "/react-posts-ts/static/media/confirm.7c91454c099b076cefd5d13c61dce7a3.svg",
+    "static/media/cancel.svg": "/react-posts-ts/static/media/cancel.a79bfd3e4f900f9797710d33b8be4bb5.svg",
+    "static/media/commentActive.svg": "/react-posts-ts/static/media/commentActive.a88be2517e434aebc7a63bcebfd7222a.svg",
+    "static/media/btn-close.svg": "/react-posts-ts/static/media/btn-close.039f1f5203f653b4bacd.svg",
+    "main.696f413b.css.map": "/react-posts-ts/static/css/main.696f413b.css.map",
+    "main.eef35fe6.js.map": "/react-posts-ts/static/js/main.eef35fe6.js.map"
   },
   "entrypoints": [
-    "static/css/main.16e10962.css",
-    "static/js/main.8b32c471.js"
+    "static/css/main.696f413b.css",
+    "static/js/main.eef35fe6.js"
   ]
 }
