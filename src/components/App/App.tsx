@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import MainLayout from '../../layouts/main';
 import PostList from '../PostList/PostList';
 import Pagination from '../Pagination/Pagination';
+import NewPostModal from '../NewPostModal/NewPostModal';
+import ControlPanel from '../ControlPanel/ControlPanel';
 
 import { useGetPostsQuery } from '../../api/postsApi';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -14,6 +16,7 @@ function App() {
     const [itemPerPage, setItemPerPage] = useState<string>('10');
     const { data, isLoading, isError } = useGetPostsQuery(null);
     const [postsToShow, setPostsToShow] = useState<Array<IPost>>([]);
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const dispatch = useAppDispatch();
     const allPosts = useAppSelector((state) => state.posts.posts);
@@ -55,22 +58,26 @@ function App() {
     }, []);
 
     return (
-        <MainLayout>
-            <Pagination
-                data={allPosts}
-                page={page}
-                setPage={setPage}
-                setItemPerPage={setItemPerPage}
-                itemPerPage={itemPerPage}
-            />
-            {isLoading ? (
-                <h1>Loading...</h1>
-            ) : isError ? (
-                <h1> Oops... Error!</h1>
-            ) : (
-                <PostList data={postsToShow} />
-            )}
-        </MainLayout>
+        <>
+            <MainLayout>
+                <Pagination
+                    data={allPosts}
+                    page={page}
+                    setPage={setPage}
+                    setItemPerPage={setItemPerPage}
+                    itemPerPage={itemPerPage}
+                />
+                <ControlPanel setIsOpenModal={setIsOpenModal} />
+                {isLoading ? (
+                    <h2 className="preloader">Loading...</h2>
+                ) : isError ? (
+                    <h2> Oops... Error!</h2>
+                ) : (
+                    <PostList data={postsToShow} />
+                )}
+            </MainLayout>
+            <NewPostModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
+        </>
     );
 }
 

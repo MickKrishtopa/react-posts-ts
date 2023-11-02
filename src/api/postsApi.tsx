@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import type { IPost, IComment } from '../types';
+import type { IPost, IComment, IFormData } from '../types';
 import { BASE_URL } from '../utils/constants';
 
 // Define a service using a base URL and expected endpoints
@@ -32,6 +32,14 @@ export const postsApi = createApi({
             }),
             // invalidatesTags: [{ type: 'Posts', id: 'LIST' }],
         }),
+        createPost: builder.mutation<IPost, IFormData>({
+            query: (body) => ({
+                url: `posts`,
+                method: 'POST',
+                body,
+            }),
+            // invalidatesTags: [{ type: 'Posts', id: 'LIST' }],
+        }),
         removePost: builder.mutation<null, number>({
             query: (id) => ({
                 url: `posts/${id}`,
@@ -49,4 +57,5 @@ export const {
     useGetCommentsByIdQuery,
     useEditPostMutation,
     useRemovePostMutation,
+    useCreatePostMutation,
 } = postsApi;

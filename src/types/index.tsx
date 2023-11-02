@@ -11,3 +11,9 @@ export interface IComment {
     email: string;
     body: string;
 }
+
+export interface IFormData {
+    userId: string;
+    title: string;
+    body: string;
+}

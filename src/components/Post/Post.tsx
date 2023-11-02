@@ -20,7 +20,7 @@ import { removePost, editPost, toggleToFavorite } from '../../store/postsSlice';
 export default function Post({ id, userId, title, body }: IPost) {
     const [isCommentOpen, setIsCommentOpen] = useState(false);
     const [isEditMode, setIsEditMode] = useState(false);
-    const { data, isError } = useGetUserByIdQuery(userId);
+    const { data, isLoading, isError } = useGetUserByIdQuery(userId);
     const [isLiked, setIsLiked] = useState(false);
 
     const [formValue, setFormValue] = useState<IPost>({
@@ -106,7 +106,11 @@ export default function Post({ id, userId, title, body }: IPost) {
                     <h2 className="post__title">{title}</h2>
                     <p className="post__body">{body}</p>
                     <h3 className="post__user">
-                        {isError ? 'unknown user' : data?.name}
+                        {isLoading
+                            ? 'Loading'
+                            : isError
+                            ? 'unknown user'
+                            : data?.name}
                     </h3>
                 </>
             )}

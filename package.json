@@ -11,6 +11,7 @@
         "@types/node": "^16.18.59",
         "@types/react": "^18.2.33",
         "@types/react-dom": "^18.2.14",
+        "gh-pages": "^6.0.0",
         "normalize.css": "^8.0.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -33,7 +34,9 @@
         "test": "react-scripts test",
         "eject": "react-scripts eject",
         "lint": "eslint .",
-        "lint:fix": "npm run lint -- --fix"
+        "lint:fix": "npm run lint -- --fix",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "eslintConfig": {
         "extends": [

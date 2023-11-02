@@ -24,6 +24,9 @@ export const postsSlice = createSlice({
                 (post) => post.id !== action.payload,
             );
         },
+        addPost(state, action: PayloadAction<IPost>) {
+            state.posts.unshift(action.payload);
+        },
         editPost(state, action: PayloadAction<IPost>) {
             state.posts = state.posts.map((post) =>
                 post.id === action.payload.id ? action.payload : post,
@@ -42,6 +45,12 @@ export const postsSlice = createSlice({
     },
 });
 
-export const { setPosts, removePost, editPost, toggleToFavorite, setFavorite } =
-    postsSlice.actions;
+export const {
+    setPosts,
+    removePost,
+    addPost,
+    editPost,
+    toggleToFavorite,
+    setFavorite,
+} = postsSlice.actions;
 export default postsSlice.reducer;
