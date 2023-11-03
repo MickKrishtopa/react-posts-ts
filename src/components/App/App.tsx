@@ -23,7 +23,6 @@ function App() {
     const sortedPost = useAppSelector((state) => state.posts.sortedPosts);
 
     const sorts = useAppSelector((state) => state.sorts);
-    const favorites = useAppSelector((state) => state.posts.favorite);
 
     useEffect(() => {
         dispatch(setSortPost(sorts));
@@ -70,7 +69,7 @@ function App() {
         <>
             <MainLayout>
                 <Pagination
-                    data={allPosts}
+                    data={sortedPost}
                     page={page}
                     setPage={setPage}
                     setItemPerPage={setItemPerPage}
