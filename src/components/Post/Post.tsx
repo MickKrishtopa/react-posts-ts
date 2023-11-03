@@ -15,7 +15,9 @@ import { useEffect, useState } from 'react';
 import CommentList from '../CommentList/CommentList';
 
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { removePost, editPost, toggleToFavorite } from '../../store/postsSlice';
+import { editPost, toggleToFavorite } from '../../store/postsSlice';
+import { openNewConfirmModal } from '../../store/modalsSlice';
+import { setConfirmId } from '../../store/postsSlice';
 
 export default function Post({ id, userId, title, body }: IPost) {
     const [isCommentOpen, setIsCommentOpen] = useState(false);
@@ -34,7 +36,6 @@ export default function Post({ id, userId, title, body }: IPost) {
     const favorites = useAppSelector((state) => state.posts.favorite);
 
     const [editPostFetch] = useEditPostMutation();
-    const [removePostFetch] = useRemovePostMutation();
 
     const handleEditSubmit = async (
         e: React.MouseEvent<HTMLImageElement, MouseEvent>,
@@ -53,13 +54,9 @@ export default function Post({ id, userId, title, body }: IPost) {
         }
     };
 
-    const handleRemove = async (id: number) => {
-        try {
-            await removePostFetch(id);
-            dispatch(removePost(id));
-        } catch (error) {
-            console.log(error);
-        }
+    const handleRemoveClick = async (id: number) => {
+        dispatch(openNewConfirmModal());
+        dispatch(setConfirmId(id));
     };
 
     const inputHandler = (
@@ -121,7 +118,7 @@ export default function Post({ id, userId, title, body }: IPost) {
                     onClick={() => setIsCommentOpen(!isCommentOpen)}
                 />
                 <img
-                    onClick={() => handleRemove(id)}
+                    onClick={() => handleRemoveClick(id)}
                     src={trashIcon}
                     alt="remove"
                 />

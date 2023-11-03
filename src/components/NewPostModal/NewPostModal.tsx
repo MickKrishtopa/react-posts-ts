@@ -1,15 +1,12 @@
 import { useEffect, useState } from 'react';
 import './NewPostModal.scss';
 import { useCreatePostMutation } from '../../api/postsApi';
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { addPost } from '../../store/postsSlice';
+import { closeAllModals } from '../../store/modalsSlice';
+import Modal from '../Modal/Modal';
 
-type Props = {
-    isOpen: boolean;
-    setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-export default function NewPostModal({ isOpen, setIsOpen }: Props) {
+export default function NewPostModal() {
     const [isValid, setIsValid] = useState(false);
     const [formData, setFormData] = useState({
         title: '',
@@ -18,14 +15,7 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
     });
 
     const dispatch = useAppDispatch();
-
-    function handleClickOutside(
-        ev: React.MouseEvent<HTMLDivElement, MouseEvent>,
-    ) {
-        if (ev.target === ev.currentTarget) {
-            setIsOpen(false);
-        }
-    }
+    const isOpen = useAppSelector((state) => state.modals.isOpenNewPostModal);
 
     const [fetchCreatePost, { isLoading, isError }] = useCreatePostMutation();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -34,7 +24,7 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
             const response = await fetchCreatePost(formData);
             if ('data' in response) {
                 dispatch(addPost(response.data));
-                setIsOpen(false);
+                dispatch(closeAllModals());
                 setFormData({
                     title: '',
                     body: '',
@@ -65,13 +55,10 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
     }, [formData]);
 
     return (
-        <div
-            onMouseUp={(e) => handleClickOutside(e)}
-            className={isOpen ? 'modal modal_open' : 'modal'}
-        >
+        <Modal isOpen={isOpen}>
             <form
                 onSubmit={(e) => handleSubmit(e)}
-                className="modal__container"
+                className="new-post-modal__form"
             >
                 <label>
                     Enter a title for the new post:
@@ -79,7 +66,7 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
                         placeholder=""
                         value={formData.title}
                         id="title"
-                        className="modal__new-post-title"
+                        className="new-post-modal__new-post-title"
                         onChange={(e) => handleChangeForm(e)}
                     />
                 </label>
@@ -88,7 +75,7 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
                     <textarea
                         value={formData.body}
                         id="body"
-                        className="modal__new-post-body"
+                        className="new-post-modal__new-post-body"
                         onChange={(e) => handleChangeForm(e)}
                     />
                 </label>
@@ -97,7 +84,7 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
                     <input
                         value={formData.userId}
                         id="userId"
-                        className="modal__new-post-userId"
+                        className="new-post-modal__new-post-userId"
                         onChange={(e) => handleChangeForm(e)}
                     />
                 </label>
@@ -106,17 +93,12 @@ export default function NewPostModal({ isOpen, setIsOpen }: Props) {
                 </span>
                 <button
                     type="submit"
-                    className="modal__submit-btn"
+                    className="new-post-modal__submit-btn"
                     disabled={isLoading || !isValid}
                 >
                     Create
                 </button>
-                <button
-                    type="button"
-                    onClick={() => setIsOpen(false)}
-                    className="modal__close-btn"
-                ></button>
             </form>
-        </div>
+        </Modal>
     );
 }

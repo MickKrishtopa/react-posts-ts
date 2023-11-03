@@ -4,11 +4,12 @@ import MainLayout from '../../layouts/main';
 import PostList from '../PostList/PostList';
 import Pagination from '../Pagination/Pagination';
 import NewPostModal from '../NewPostModal/NewPostModal';
+import ConfirmModal from '../ConfirmModal/ConfirmModal';
 import ControlPanel from '../ControlPanel/ControlPanel';
 
 import { useGetPostsQuery } from '../../api/postsApi';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { setPosts, setFavorite } from '../../store/postsSlice';
+import { setPosts, setFavorite, setSortPost } from '../../store/postsSlice';
 import { IPost } from '../../types';
 
 function App() {
@@ -16,23 +17,31 @@ function App() {
     const [itemPerPage, setItemPerPage] = useState<string>('10');
     const { data, isLoading, isError } = useGetPostsQuery(null);
     const [postsToShow, setPostsToShow] = useState<Array<IPost>>([]);
-    const [isOpenModal, setIsOpenModal] = useState(false);
 
     const dispatch = useAppDispatch();
     const allPosts = useAppSelector((state) => state.posts.posts);
+    const sortedPost = useAppSelector((state) => state.posts.sortedPosts);
+
+    const sorts = useAppSelector((state) => state.sorts);
+    const favorites = useAppSelector((state) => state.posts.favorite);
 
     useEffect(() => {
-        const postsToShow: Array<IPost> = allPosts.slice(
+        dispatch(setSortPost(sorts));
+    }, [sorts, allPosts]);
+
+    useEffect(() => {
+        const postsToShow: Array<IPost> = sortedPost.slice(
             (page - 1) * Number(itemPerPage),
             page * Number(itemPerPage),
         );
 
-        // console.log(postsToShow);
         setPostsToShow(postsToShow);
-    }, [page, itemPerPage, allPosts]);
+    }, [page, itemPerPage, sortedPost]);
 
     useEffect(() => {
-        !!data && dispatch(setPosts(data));
+        if (data) {
+            dispatch(setPosts(data));
+        }
     }, [isLoading]);
 
     useEffect(() => {
@@ -67,7 +76,7 @@ function App() {
                     setItemPerPage={setItemPerPage}
                     itemPerPage={itemPerPage}
                 />
-                <ControlPanel setIsOpenModal={setIsOpenModal} />
+                <ControlPanel />
                 {isLoading ? (
                     <h2 className="preloader">Loading...</h2>
                 ) : isError ? (
@@ -76,7 +85,8 @@ function App() {
                     <PostList data={postsToShow} />
                 )}
             </MainLayout>
-            <NewPostModal isOpen={isOpenModal} setIsOpen={setIsOpenModal} />
+            <NewPostModal />
+            <ConfirmModal />
         </>
     );
 }

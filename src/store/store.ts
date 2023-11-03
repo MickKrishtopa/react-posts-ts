@@ -1,15 +1,17 @@
 import { configureStore } from '@reduxjs/toolkit';
 import postsReducer from './postsSlice';
-// import commentsReducer from './commentsSlice.tsx';
-// import usersReducer from './usersSlice.tsx';
+import modalsReducer from './modalsSlice';
+import filterReducer from './filterSlice';
+
 import { postsApi } from '../api/postsApi';
 import { userApi } from '../api/userApi';
 
 export const store = configureStore({
     reducer: {
         posts: postsReducer,
-        // comments: commentsReducer,
-        // users: usersReducer,
+        modals: modalsReducer,
+        sorts: filterReducer,
+
         [postsApi.reducerPath]: postsApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
     },

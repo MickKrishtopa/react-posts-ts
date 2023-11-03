@@ -4,7 +4,7 @@ import { IComment } from '../../types';
 
 export default function CommentItem({ name, email, body }: IComment) {
     return (
-        <li>
+        <li className="comment-item">
             <div>
                 <h3>{name}</h3>
                 <span>{email}</span>
